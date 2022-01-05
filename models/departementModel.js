@@ -1,11 +1,5 @@
-const {Sequelize, DataTypes, Model} = require("sequlieze")
-const User = require("./userModal")
-
-const sequelize = new Sequelize('crudApp', 'root',null,{
-    host: 'localhost',
-    dialect: 'mysql'
-})
-
+const {DataTypes, Model} = require("sequelize")
+const sequelize = require("../config/db")
 
 
 class Departement extends Model{}
@@ -23,7 +17,10 @@ Departement.init({
     description: {
         type: DataTypes.STRING
     }
-})
+},{
+    sequelize,
+    modelName: "Departement"
+}
+)
 
-
-Departement.belongsTo(User)
+module.exports = Departement

@@ -1,11 +1,8 @@
-const {Sequelize, DataTypes, Model} = require("sequlieze")
+const { DataTypes, Model} = require("sequelize")
 
-const sequelize = new Sequelize('crudApp', 'root',null,{
-    host: 'localhost',
-    dialect: 'mysql'
-})
+const sequelize = require("../config/db")
 
-class User extends Model{}
+class User extends Model {}
 
 User.init({
     id: {
@@ -20,10 +17,17 @@ User.init({
     email: {
         type: DataTypes.STRING
     },
-    description: {
+    password: {
         type: DataTypes.STRING
     }
-})
+    
+},{
+    sequelize,
+    modelName: "User"
+}
+)
 
 
-module.exports = User
+module.exports = User;
+    
+
