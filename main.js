@@ -1,10 +1,14 @@
 const express = require("express")
 const app = express()
 const { Sequelize } = require("sequelize")
+const UserController = require("./controllers/user/userController")
+const DepartementController = require("./controllers/departement/departementController")
 
 app.listen(3000,()=>{
     console.log('connected')
 })
+
+app.use(express.json())
 
 
 const sequelize = new Sequelize('crudApp', 'root',null,{
@@ -12,15 +16,59 @@ const sequelize = new Sequelize('crudApp', 'root',null,{
     dialect: 'mysql'
 })
 
-
-app.get("/",(req,res)=>{
-    res.send("hello world")
-})
-
-
 try{
     sequelize.authenticate();
     console.log("connection successful")
 }catch(error){
     console.log(error)
 }
+
+ // User Routing//
+
+app.get("/user",(req,res)=>{
+    const cont = new UserController
+    const rslt = cont.getAll(req,res)
+})
+
+app.post("/user/:id", (req,res)=>{
+    const cont = new UserController
+    const rslt = cont.addUser(req,res)
+})
+
+app.delete("/user/:id", (req,res)=>{
+    const cont = new UserController
+    const rslt = cont.deleteUser(req,res)
+})
+
+app.put("/user/:id", (req,res)=>{
+    const cont = new UserController
+    const rslt = cont.updateUser(req,res)
+})
+
+
+
+//departement Routing//
+
+
+app.get("/user",(req,res)=>{
+    const cont = new DepartementController
+    const rslt = cont.getAll(req,res)
+})
+
+app.post("/user/:id", (req,res)=>{
+    const cont = new DepartementController
+    const rslt = cont.addUser(req,res)
+})
+
+app.delete("/user/:id", (req,res)=>{
+    const cont = new DepartementController
+    const rslt = cont.deleteUser(req,res)
+})
+
+app.put("/user/:id", (req,res)=>{
+    const cont = new DepartementController
+    const rslt = cont.updateUser(req,res)
+})
+
+
+
