@@ -50,18 +50,19 @@ class UserController {
 
 
     deleteUser = async (req,res)=>{
-        Uid = req.params.id
+        console.log(req)
+        const id = req.params.id
         const rslt = await User.destroy({
             where: {
-                id: Uid
+                id: id,
             }
         });
         
         const users = await User.findAll({
             raw: true
         })
+        res.render("user/deleteUser", {users})
         console.log(users)
-        res.render('user/deleteUser', { users })
 
     }
 }
