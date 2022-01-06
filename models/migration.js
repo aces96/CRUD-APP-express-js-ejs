@@ -1,6 +1,12 @@
 const sequelize = require("../config/db")
 const User = require("./userModal")
-const {Departement} = require("./departementModel")
+const Departement = require("./departementModel")
+
+
+
+User.belongsTo(Departement)
+Departement.hasMany(User)
+
 
 
 sequelize.sync({ force: true },()=>{

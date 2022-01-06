@@ -27,21 +27,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                    <% users.forEach((User)=>{ %>
+                        <tr>
+                            <th scope="row"><%= User.id %></th>
+                            <td><%= User.name %></td>
+                            <td><%= User.email %></td>
+                            <td><%= User.password %></td>
+                            <td>
+                                <button type="button" class="btn btn-warning">Update</button>
+                                <button href="/user/<%= User.id %>" type="button" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+
+                    <% }) %>
+
                 </tbody>
             </table>
 

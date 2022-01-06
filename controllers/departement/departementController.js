@@ -36,7 +36,7 @@ class DepartementController {
             description: description,
         }, {
             where: {
-                id = id
+                id:  id
             }
         })
 

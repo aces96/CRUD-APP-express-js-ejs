@@ -3,9 +3,11 @@ const User = require("../../models/userModal")
 class UserController {
     getAll = async(req,res)=>{
 
-        const  rslt = await User.findAll()
-        res.send(rslt)
-        
+        const  rslt = await User.findAll({
+            raw: true
+        })
+        console.log(rslt)
+        res.render('user/readUser', { rslt })
     }
 
     addUser = async (req,res)=>{
@@ -23,6 +25,7 @@ class UserController {
         })
 
         res.send(reslt)
+        res.render('user/create')
 
     }
 
@@ -38,7 +41,7 @@ class UserController {
             password: password,
         }, {
             where: {
-                id = id
+                id: id
             }
         })
 
@@ -47,14 +50,19 @@ class UserController {
 
 
     deleteUser = async (req,res)=>{
-        id = req.body.id
+        Uid = req.params.id
         const rslt = await User.destroy({
             where: {
-                id: id
+                id: Uid
             }
         });
+        
+        const users = await User.findAll({
+            raw: true
+        })
+        console.log(users)
+        res.render('user/deleteUser', { users })
 
-        res.send(rslt)
     }
 }
 
