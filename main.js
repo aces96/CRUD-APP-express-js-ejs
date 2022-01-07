@@ -26,7 +26,8 @@ try{
 }
 
  // User Routing//
-app.use(express.json());
+ app.use(express.json())
+ app.use(express.urlencoded({extended:true}));
 
 
 app.get("/user",(req,res)=>{
@@ -34,7 +35,7 @@ app.get("/user",(req,res)=>{
     const rslt = cont.getAll(req,res)
 })
 
-app.post("/user/:id", (req,res)=>{
+app.post("/user", (req,res)=>{
     const cont = new UserController
     const rslt = cont.addUser(req,res)
 })

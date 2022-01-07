@@ -11,29 +11,35 @@ class UserController {
     }
 
     addUser = async (req,res)=>{
-        Uname = req.body.name
-        email = req.body.email
-        password = req.body.password
+        console.log('body ', req.body)
+        const Uname = req.body.name
+        const email = req.body.email
+        const password = req.body.password
 
         const reslt = await User.create({
-            id:1,
             name: Uname,
             email: email,
-            password: password
+            password: password,
+            raw: true
         },()=>{
             console.log("user added successfuly")
         })
 
-        res.send(reslt)
-        res.render('user/create')
+        const users = await User.findAll({
+            raw: true
+        })
+
+        res.render('user/createUser', {users})
+
+        
 
     }
 
     updateUser = async (req,res)=>{
-            id = req.body.id
-            name = req.body.name
-            email = req.body.email
-            password = req.body.password
+            const id = req.body.id
+            const name = req.body.name
+            const email = req.body.email
+            const password = req.body.password
 
         const rslt = await User.update({
             name: name,
@@ -45,7 +51,11 @@ class UserController {
             }
         })
 
-        res.send(rslt)
+        const users = await User.findAll({
+            raw:true
+        })
+
+        res.render('/user/updateUser', {users})
     }
 
 
