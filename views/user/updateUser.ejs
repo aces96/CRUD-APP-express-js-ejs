@@ -11,6 +11,11 @@
             display: flex;
             flex-direction: column;
         }
+        .update-body{
+            display: flex;
+            flex-direction: column;
+        }
+
     </style>
 </head>
 <body>
@@ -29,25 +34,25 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Description</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Departement</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                    <% users.forEach((User)=>{ %>
+                        <tr>
+                            <th scope="row"><%= User.id %></th>
+                            <td><%= User.name %></td>
+                            <td><%= User.email %></td>
+                            <td><%= User.password %></td>
+                            <td>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button>
+                                <a href="/user/<%= User.id %>" type="button" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+
+                    <% }) %>
                 </tbody>
             </table>
 
@@ -69,6 +74,38 @@
                             <input type="text" id="email" name="email" placeholder="email@email.com">
                             <label for="password">Password</label>
                             <input type="paswword" name="password" id="password">
+                            <label for="departement">Departement</label>
+                            <input type="text" name="departement" id="departement">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+            <!-- modal -->
+
+            <div class="modal" id="updateModal" tabindex="-1">
+                <form method="POST" action="/user/<%= User.id %>" class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Users</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="M6">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" placeholder="email@email.com">
+                            <label for="password">Password</label>
+                            <input type="paswword" name="password" id="password">
+                            <label for="departement">Departement</label>
+                            <input type="text" name="departement" id="departement">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

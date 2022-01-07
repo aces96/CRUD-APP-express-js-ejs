@@ -19,7 +19,7 @@
             <a class="navbar-brand">Users</a>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#updateModal" type="button">Search</button>
             </form>
             </div>
         </nav>
@@ -31,6 +31,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Password</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,7 +42,7 @@
                             <td><%= User.email %></td>
                             <td><%= User.password %></td>
                             <td>
-                                <button type="button" class="btn btn-warning">Update</button>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button>
                                 <a href="/user/<%= User.id %>" type="button" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
@@ -78,6 +79,37 @@
                 </div>
                 </div>
             </form>
+
+
+
+
+
+
+        <!-- update modal -->
+
+        <div class="modal" id="updateModal" tabindex="-1">
+            <form method="POST" action="/user" class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Users</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="M6">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" placeholder="email@email.com">
+                        <label for="password">Password</label>
+                        <input type="paswword" name="password" id="password">
+                        <label for="departement">Departement</label>
+                        <input type="text" name="departement" id="departement">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
 
 
