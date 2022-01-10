@@ -43,7 +43,7 @@
                             <td><%= User.email %></td>
                             <td><%= User.password %></td>
                             <td>
-                                <button type="button" class="btn btn-warning">Update</button>
+                                <a href="/updateUser/<%= User.id %>" type="button" class="btn btn-warning">Update</a>
                                 <a href="/user/<%= User.id %>" type="button" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>

@@ -35,6 +35,11 @@ app.get("/user",(req,res)=>{
     const rslt = cont.getAll(req,res)
 })
 
+app.get("/updateUser/:id", (req,res)=>{
+    const id =  req.params.id
+    res.render("user/updateUser" , { id })
+})
+
 app.post("/user", (req,res)=>{
     const cont = new UserController
     const rslt = cont.addUser(req,res)
@@ -45,7 +50,7 @@ app.get("/user/:id", (req,res)=>{
     const rslt = cont.deleteUser(req,res)
 })
 
-app.put("/user/:id", (req,res)=>{
+app.post("/userUpdate/:id", (req,res)=>{
     const cont = new UserController
     const rslt = cont.updateUser(req,res)
 })

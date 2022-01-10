@@ -36,10 +36,11 @@ class UserController {
     }
 
     updateUser = async (req,res)=>{
-            const id = req.body.id
+            const id = req.params.id
             const name = req.body.name
             const email = req.body.email
             const password = req.body.password
+            console.log(id)
 
         const rslt = await User.update({
             name: name,
@@ -52,10 +53,9 @@ class UserController {
         })
 
         const users = await User.findAll({
-            raw:true
+            raw: true
         })
-
-        res.render('/user/updateUser', {users})
+        res.render('user/createUser', { users})
     }
 
 
