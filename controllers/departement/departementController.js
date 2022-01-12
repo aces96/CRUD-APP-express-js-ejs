@@ -55,7 +55,7 @@ class DepartementController {
         const users = await Departement.findAll({
             raw: true
         })
-        res.redirect("departement")
+        res.redirect("/departement")
         console.log(users)
 
     }
