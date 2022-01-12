@@ -1,26 +1,25 @@
-const User = require("../../models/userModal")
+const {User} = require("../../models/migration")
 
 class UserController {
     getAll = async(req,res)=>{
 
-        const  rslt = await User.findAll({
+        const  users = await User.findAll({
             raw: true
         })
-        console.log(rslt)
-        res.render('user/readUser', { rslt })
+        res.render('user/readUser', {  users })
     }
 
     addUser = async (req,res)=>{
-        console.log('body ', req.body)
+        console.log('body hire :', req.body)
         const Uname = req.body.name
         const email = req.body.email
         const password = req.body.password
-
+        const departement = req.body.DepartementId
         const reslt = await User.create({
             name: Uname,
             email: email,
             password: password,
-            raw: true
+            DepartementId: departement
         },()=>{
             console.log("user added successfuly")
         })
@@ -29,7 +28,7 @@ class UserController {
             raw: true
         })
 
-        res.render('user/createUser', {users})
+        res.redirect('user/readUser')
 
         
 

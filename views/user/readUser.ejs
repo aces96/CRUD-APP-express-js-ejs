@@ -31,17 +31,19 @@
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Password</th>
+                    <th scope="col">Departement</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <% rslt.forEach((User)=>{ %>
+                    <% users.forEach((User)=>{ %>
 
                         <tr>
                             <th scope="row"><%= User.id %></th>
                             <td><%= User.name %></td>
                             <td><%= User.email %></td>
                             <td><%= User.password %></td>
+                            <td><%= User.departement %></td>
                             <td>
                                 <a href="/updateUser/<%= User.id %>" type="button" class="btn btn-warning">Update</a>
                                 <a href="/user/<%= User.id %>" type="button" class="btn btn-danger">Delete</a>
@@ -72,8 +74,11 @@
                             <input type="text" id="email" name="email" placeholder="email@email.com">
                             <label for="password">Password</label>
                             <input type="paswword" name="password" id="password">
-                            <label for="departement">Departement</label>
-                            <input type="text" name="departement" id="departement">
+                            <label for="DepartementId">Departement</label>
+                            <select name="DepartementId" id="DepartementId">
+                                <option value="1">developpement</option>
+                                <option value="2">RH</option>
+                            </select>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

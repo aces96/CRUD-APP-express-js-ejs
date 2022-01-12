@@ -1,59 +1,68 @@
-const Departement = require("../../models/departementModel")
-
+const {Departement} = require("../../models/migration")
 
 class DepartementController {
     getAll = async(req,res)=>{
 
-        const  rslt = await Departement.findAll()
-        res.send(rslt)
-        
+        const  departement = await Departement.findAll({
+            raw: true
+        })
+        res.render('departement/read', {  departement })
     }
 
     addUser = async (req,res)=>{
-        Uname = req.body.name
-        description = req.body.description
-
+        const Dname = req.body.name
+        const description = req.body.email
         const reslt = await Departement.create({
-            id:1,
-            name: Uname,
+            name: Dname,
             description: description,
         },()=>{
             console.log("departement added successfuly")
         })
 
-        res.send(reslt)
+        res.redirect('departement')
+
+        
 
     }
 
     updateUser = async (req,res)=>{
-            id = req.body.id
-            name = req.body.name
-            description = req.body.description
+            const id = req.params.id
+            const name = req.body.name
+            const description = req.body.description
+            console.log(id)
 
         const rslt = await Departement.update({
             name: name,
-            email: email,
             description: description,
         }, {
             where: {
-                id:  id
+                id: id
             }
         })
-
-        res.send(rslt)
+        res.render('departement')
     }
 
 
     deleteUser = async (req,res)=>{
-        id = req.body.id
+        console.log(req)
+        const id = req.params.id
         const rslt = await Departement.destroy({
             where: {
-                id: id
+                id: id,
             }
         });
-        res.send(rslt)
+        
+        const users = await Departement.findAll({
+            raw: true
+        })
+        res.redirect("departement")
+        console.log(users)
+
     }
 }
 
 
 module.exports = DepartementController
+
+
+

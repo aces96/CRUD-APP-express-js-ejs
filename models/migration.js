@@ -9,8 +9,13 @@ Departement.hasMany(User)
 
 
 
-sequelize.sync({ force: true },()=>{
+sequelize.sync({ force: false },()=>{
 
     console.log("The table for the User model was just (re)created!");
 
 });
+
+module.exports = {
+    User,
+    Departement
+}
