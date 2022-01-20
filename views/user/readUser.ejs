@@ -76,8 +76,11 @@
                             <input type="paswword" name="password" id="password">
                             <label for="DepartementId">Departement</label>
                             <select name="DepartementId" id="DepartementId">
-                                <option value="1">developpement</option>
-                                <option value="2">RH</option>
+                                <% deprt.forEach((deprt)=>{ %>
+                                <option value=<%=deprt.name%>><%=deprt.name%></option>
+
+                                <% }) %>
+
                             </select>
                         </div>
                         <div class="modal-footer">

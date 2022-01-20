@@ -1,4 +1,5 @@
 const {User} = require("../../models/migration")
+const {Departement} = require("../../models/migration")
 
 class UserController {
     getAll = async(req,res)=>{
@@ -6,29 +7,35 @@ class UserController {
         const  users = await User.findAll({
             raw: true
         })
-        res.render('user/readUser', {  users })
+        const deprt = await Departement.findAll({
+            raw: true
+        })
+        res.render('user/readUser', {  users, deprt })
     }
 
     addUser = async (req,res)=>{
-        console.log('body hire :', req.body)
+        console.log(req.body.DepartementId)
         const Uname = req.body.name
         const email = req.body.email
         const password = req.body.password
         const departement = req.body.DepartementId
+
+        const dprt = await Departement.findOne({
+            where: {
+                name: departement
+            }
+        })
+        console.log(dprt)
         const reslt = await User.create({
             name: Uname,
             email: email,
             password: password,
-            DepartementId: departement
+            DepartementId: dprt.id
         },()=>{
             console.log("user added successfuly")
         })
 
-        const users = await User.findAll({
-            raw: true
-        })
-
-        res.redirect('user/readUser')
+        res.redirect('/user')
 
         
 
@@ -54,7 +61,7 @@ class UserController {
         const users = await User.findAll({
             raw: true
         })
-        res.render('user/createUser', { users})
+        res.redirect('/user')
     }
 
 
@@ -66,11 +73,7 @@ class UserController {
                 id: id,
             }
         });
-        
-        const users = await User.findAll({
-            raw: true
-        })
-        res.render("user/deleteUser", {users})
+        res.redirect('/user')
         console.log(users)
 
     }

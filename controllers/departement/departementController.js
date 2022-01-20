@@ -39,7 +39,7 @@ class DepartementController {
                 id: id
             }
         })
-        res.render('departement')
+        res.redirect('departement')
     }
 
 
@@ -51,10 +51,6 @@ class DepartementController {
                 id: id,
             }
         });
-        
-        const users = await Departement.findAll({
-            raw: true
-        })
         res.redirect("/departement")
         console.log(users)
 
