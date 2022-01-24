@@ -9,9 +9,9 @@ class DepartementController {
         res.render('departement/read', {  departement })
     }
 
-    addUser = async (req,res)=>{
+    addDeprt = async (req,res)=>{
         const Dname = req.body.name
-        const description = req.body.email
+        const description = req.body.description
         const reslt = await Departement.create({
             name: Dname,
             description: description,
@@ -25,7 +25,7 @@ class DepartementController {
 
     }
 
-    updateUser = async (req,res)=>{
+    updateDeprt = async (req,res)=>{
             const id = req.params.id
             const name = req.body.name
             const description = req.body.description
@@ -43,7 +43,7 @@ class DepartementController {
     }
 
 
-    deleteUser = async (req,res)=>{
+    deleteDeprt = async (req,res)=>{
         console.log(req)
         const id = req.params.id
         const rslt = await Departement.destroy({

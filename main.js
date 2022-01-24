@@ -24,10 +24,11 @@ try{
 }catch(error){
     console.log(error)
 }
+app.use(express.json())
+app.use(express.urlencoded({extended:true}));
 
  // User Routing//
- app.use(express.json())
- app.use(express.urlencoded({extended:true}));
+
 
 
 app.get("/user",(req,res)=>{
@@ -67,22 +68,22 @@ app.get("/departement",(req,res)=>{
 
 app.get("/updateUser/:id", (req,res)=>{
     const id =  req.params.id
-    res.render("user/updateUser" , { id })
+    res.render("departement/updateDepartement" , { id })
 })
 
 app.post("/departement", (req,res)=>{
     const cont = new DepartementController
-    const rslt = cont.addUser(req,res)
+    const rslt = cont.addDeprt(req,res)
 })
 
 app.get("/departement/:id", (req,res)=>{
     const cont = new DepartementController
-    const rslt = cont.deleteUser(req,res)
+    const rslt = cont.deleteDeprt(req,res)
 })
 
 app.post("/departement/:id", (req,res)=>{
     const cont = new DepartementController
-    const rslt = cont.updateUser(req,res)
+    const rslt = cont.updateDeprt(req,res)
 })
 
 

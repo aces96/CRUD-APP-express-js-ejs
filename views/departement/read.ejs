@@ -29,7 +29,7 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -39,7 +39,7 @@
                         <tr>
                             <th scope="row"><%= departement.id %></th>
                             <td><%= departement.name %></td>
-                            <td><%= departement.email %></td>
+                            <td><%= departement.description %></td>
                             <td>
                                 <a href="/updateUser/<%= departement.id %>" type="button" class="btn btn-warning">Update</a>
                                 <a href="/departement/<%= departement.id %>" type="button" class="btn btn-danger">Delete</a>

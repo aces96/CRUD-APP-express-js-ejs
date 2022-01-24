@@ -20,6 +20,9 @@ User.init({
     password: {
         type: DataTypes.STRING
     },
+    departement: {
+        type: DataTypes.STRING
+    }
 
     
 },{

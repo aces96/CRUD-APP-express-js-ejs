@@ -14,7 +14,6 @@ class UserController {
     }
 
     addUser = async (req,res)=>{
-        console.log(req.body.DepartementId)
         const Uname = req.body.name
         const email = req.body.email
         const password = req.body.password
@@ -30,12 +29,13 @@ class UserController {
             name: Uname,
             email: email,
             password: password,
+            departement: departement,
             DepartementId: dprt.id
         },()=>{
             console.log("user added successfuly")
         })
 
-        res.redirect('/user')
+        res.redirect('/user', )
 
         
 
